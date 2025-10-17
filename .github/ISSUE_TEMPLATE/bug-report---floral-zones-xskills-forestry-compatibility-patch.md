@@ -2,7 +2,7 @@
 name: Bug Report - Floral Zones xSkills Forestry Compatibility Patch
 about: Create a report to help us improve
 title: "[BUG] "
-labels: ''
+labels: bug, Floral Zones xSkills Forestry Compatibility Patch
 assignees: AriesLR
 
 ---

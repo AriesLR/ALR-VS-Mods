@@ -2,7 +2,7 @@
 name: Bug Report - Story Location Regen
 about: Create a report to help us improve
 title: "[BUG] "
-labels: ''
+labels: bug, Story Location Regen
 assignees: AriesLR
 
 ---
