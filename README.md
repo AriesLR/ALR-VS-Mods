@@ -3,7 +3,7 @@
 Find (almost) all of my mods within this repo.
 
 ## Table of Contents
-- [Butchering FotSA Bovinae Compatibility Patch](#how-it-works)
-- [Claim Flight](#requirements)
-- [Floral Zones xSkills Forestry Compatibility Patch](#features)
-- [Story Location Regen](#planned-features)
+- [Butchering FotSA Bovinae Compatibility Patch](https://github.com/AriesLR/ALR-VS-Mods/tree/main/ButcheringFotSABovinaeCompat)
+- [Claim Flight](https://github.com/AriesLR/ALR-VS-Mods/tree/main/ClaimFlight)
+- [Floral Zones xSkills Forestry Compatibility Patch](https://github.com/AriesLR/ALR-VS-Mods/tree/main/FloralZonesXSkillsForestryCompat)
+- [Story Location Regen](https://github.com/AriesLR/ALR-VS-Mods/tree/main/StoryLocationRegen)
