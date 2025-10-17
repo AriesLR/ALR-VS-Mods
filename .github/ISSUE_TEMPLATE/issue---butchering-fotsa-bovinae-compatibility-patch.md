@@ -1,8 +1,8 @@
 ---
-name: Bug Report - Story Location Regen
-about: Story Location Regen
+name: Issue - Butchering FotSA Bovinae Compatibility Patch
+about: Butchering FotSA Bovinae Compatibility Patch
 title: ""
-labels: Story Location Regen
+labels: Butchering FotSA Bovinae Compatibility Patch
 assignees: AriesLR
 
 ---

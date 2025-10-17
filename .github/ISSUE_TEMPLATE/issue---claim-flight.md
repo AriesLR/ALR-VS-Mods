@@ -1,5 +1,5 @@
 ---
-name: Bug Report - Claim Flight
+name: Issue - Claim Flight
 about: Claim Flight
 title: ""
 labels: Claim Flight

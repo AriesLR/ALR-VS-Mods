@@ -1,8 +1,8 @@
 ---
-name: Bug Report - Floral Zones xSkills Forestry Compatibility Patch
-about: Floral Zones xSkills Forestry Compatibility Patch
+name: Issue - Story Location Regen
+about: Story Location Regen
 title: ""
-labels: Floral Zones xSkills Forestry Compatibility Patch
+labels: Story Location Regen
 assignees: AriesLR
 
 ---

@@ -1,8 +1,8 @@
 ---
-name: Bug Report - Butchering FotSA Bovinae Compatibility Patch
-about: Butchering FotSA Bovinae Compatibility Patch
+name: Issue - Floral Zones xSkills Forestry Compatibility Patch
+about: Floral Zones xSkills Forestry Compatibility Patch
 title: ""
-labels: Butchering FotSA Bovinae Compatibility Patch
+labels: Floral Zones xSkills Forestry Compatibility Patch
 assignees: AriesLR
 
 ---
