@@ -1,6 +1,6 @@
 ---
 name: Bug Report - Floral Zones xSkills Forestry Compatibility Patch
-about:
+about: Floral Zones xSkills Forestry Compatibility Patch
 title: "[BUG] "
 labels: bug, Floral Zones xSkills Forestry Compatibility Patch
 assignees: AriesLR

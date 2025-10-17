@@ -1,6 +1,6 @@
 ---
 name: Bug Report - Story Location Regen
-about:
+about: Story Location Regen
 title: "[BUG] "
 labels: bug, Story Location Regen
 assignees: AriesLR
