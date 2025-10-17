@@ -1,6 +1,6 @@
 ---
 name: Bug Report - Claim Flight
-about: Create a report to help us improve
+about:
 title: "[BUG] "
 labels: bug, Claim Flight
 assignees: AriesLR
