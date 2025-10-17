@@ -2,7 +2,7 @@
 name: Bug Report - Butchering FotSA Bovinae Compatibility Patch
 about: Butchering FotSA Bovinae Compatibility Patch
 title: ""
-labels: bug, Butchering FotSA Bovinae Compatibility Patch
+labels: Butchering FotSA Bovinae Compatibility Patch
 assignees: AriesLR
 
 ---

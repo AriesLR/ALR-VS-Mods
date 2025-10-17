@@ -2,7 +2,7 @@
 name: Bug Report - Claim Flight
 about: Claim Flight
 title: ""
-labels: bug, Claim Flight
+labels: Claim Flight
 assignees: AriesLR
 
 ---
