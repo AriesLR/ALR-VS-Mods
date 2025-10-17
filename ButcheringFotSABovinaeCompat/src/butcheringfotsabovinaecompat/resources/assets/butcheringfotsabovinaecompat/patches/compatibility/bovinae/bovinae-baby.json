@@ -1,0 +1,17 @@
+﻿[
+  { "op": "replace", "path": "/enabled", "value": true, "file": "butcheringcompatpatch:itemtypes/butchercreatures/bovinae/bovinae-baby.json", "dependsOn": [{ "modid": "bovinae" }] },
+  {
+    "op": "add",
+    "path": "/server/behaviors/-",
+    "value": { "code": "butcherable", "itemByType": { "bovinae-adult-female-*": "butcheringcompatpatch:deadbovinae-female-dead", "bovinae-adult-male-*": "butcheringcompatpatch:deadbovinae-male-dead" } },
+    "file": "bovinae:entities/animal/mammal/hooved/bovinae-baby.json",
+    "dependsOn": [{ "modid": "bovinae" }]
+  },
+  {
+    "op": "add",
+    "path": "/client/behaviors/-",
+    "value": { "code": "butcherable", "itemByType": { "bovinae-adult-female-*": "butcheringcompatpatch:deadbovinae-female-dead", "bovinae-adult-male-*": "butcheringcompatpatch:deadbovinae-male-dead" } },
+    "file": "bovinae:entities/animal/mammal/hooved/bovinae-baby.json",
+    "dependsOn": [{ "modid": "bovinae" }]
+  }
+]

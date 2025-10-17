@@ -1,0 +1,8 @@
+{
+  "claimflight:flight_enabled": "[ClaimFlight] Flight enabled!",
+  "claimflight:flight_disabled": "[ClaimFlight] Flight disabled!",
+  "claimflight:deny_flight": "[ClaimFlight] You can only enable flight while inside a claim where you have build permissions.",
+  "claimflight:toggle_hotkey": "Land Claim Fly Mode On/Off",
+  "claimflight:leave_claim_timer": "[ClaimFlight] Warning: You are outside a claim. Flight will disable in {0} seconds.",
+  "claimflight:flight_disabled_outside_claim": "[ClaimFlight] Flight disabled because you left the claim for too long."
+}

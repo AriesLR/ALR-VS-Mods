@@ -1,0 +1,76 @@
+﻿[
+  { "file": "floralzonescaperegion:blocktypes/plant/leaves/normal", "op": "addmerge", "path": "/behaviorsByType/*-grown*-*", "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }] },
+  { "file": "floralzonescaperegion:blocktypes/plant/leaves/branchy", "op": "addmerge", "path": "/behaviorsByType/*-grown*-*", "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }] },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/plant/leaves/normal",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/plant/leaves/branchy",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }]
+  },
+  {
+    "file": "floralzonesmediterraneanregion:blocktypes/plant/leaves/normal",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }]
+  },
+  {
+    "file": "floralzonesmediterraneanregion:blocktypes/plant/leaves/branchy",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }]
+  },
+  {
+    "file": "floralzoneseastasiaticregion:blocktypes/plant/leaves/normal",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }]
+  },
+  {
+    "file": "floralzoneseastasiaticregion:blocktypes/plant/leaves/branchy",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }]
+  },
+  {
+    "file": "floralzonescosmopolitanregion:blocktypes/plant/leaves/normal",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }]
+  },
+  {
+    "file": "floralzonescosmopolitanregion:blocktypes/plant/leaves/branchy",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }]
+  },
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/plant/leaves/normal",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }]
+  },
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/plant/leaves/branchy",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/plant/leaves/normal",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.01" } }]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/plant/leaves/branchy",
+    "op": "addmerge",
+    "path": "/behaviorsByType/*-grown*-*",
+    "value": [{ "name": "XSkillsLeaves", "properties": { "xp": "0.02" } }]
+  }
+]

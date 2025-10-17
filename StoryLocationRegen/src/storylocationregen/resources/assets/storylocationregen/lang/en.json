@@ -1,0 +1,46 @@
+{
+  "storylocationregen:command_root_desc": "Commands for StoryLocationRegen.",
+
+  "storylocationregen:usage_set": "Usage: /storylocregen set <locationName> <chunkRadius>",
+  "storylocationregen:set_desc": "Sets the center of the regen radius to the player's current position.",
+
+  "storylocationregen:usage_regen": "Usage: /storylocregen regen <locationName>",
+  "storylocationregen:regen_desc": "Starts the regen process manually with the regular 15 minute warning.",
+
+  "storylocationregen:usage_forceregen": "Usage: /storylocregen forceregen <locationName>",
+  "storylocationregen:forceregen_desc": "Starts the regen process manually with a 1 minute warning.",
+
+  "storylocationregen:usage_delete": "Usage: /storylocregen delete <locationName>",
+  "storylocationregen:delete_desc": "Deletes a saved location and cancels any scheduled regen.",
+
+  "storylocationregen:list_desc": "Shows the list of currently set regen locations.",
+
+  "storylocationregen:config_saved": "Mod data successfully saved.",
+  "storylocationregen:error_loading_config": "Error loading mod config: {0}",
+  "storylocationregen:error_saving_config": "Error saving mod config: {0}",
+
+  "storylocationregen:coords_saved": "{0} coordinates saved: X: {1}, Z: {2}. Next regen in {3} day(s).",
+  "storylocationregen:coords_not_saved": "{0} coordinates are not set yet.",
+  "storylocationregen:player_not_found": "Player not found.",
+
+
+  "storylocationregen:error_empty_name": "Location name cannot be empty.",
+  "storylocationregen:error_invalid_radius": "Chunk radius must be a positive integer.",
+  "storylocationregen:error_already_scheduled": "A regen is already scheduled for that location.",
+
+  "storylocationregen:forced_regen": "{0} regen started.",
+  "storylocationregen:days_until_regen": "{0} will regen in {1} day(s).",
+  "storylocationregen:no_locations": "No regen locations have been set yet.",
+  "storylocationregen:scheduled": " (Regen Scheduled)",
+  "storylocationregen:location_deleted": "Location '{0}' deleted and pending regen cancelled.",
+
+  "storylocationregen:regen_started": "The {0} is distorted by space and time...",
+  "storylocationregen:regen_success": "The {0} reappears anew...",
+
+  "storylocationregen:insidewarning1": "The ground trembles below the {0}...",
+  "storylocationregen:insidewarning2": "Your head begins to ache...",
+  "storylocationregen:insidewarning3": "The rust is leaking in...",
+  "storylocationregen:insidewarning4": "You feel like you should leave, QUICKLY!",
+
+  "storylocationregen:warning_teleport": "A higher power saves you from destruction."
+}
