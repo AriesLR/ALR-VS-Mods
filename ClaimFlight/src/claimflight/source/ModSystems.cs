@@ -51,6 +51,8 @@ namespace claimflight
         private double lastResyncSendTime = 0;
         private const double ResyncDebounceSeconds = 0.25;
 
+        private const double PostFlightSafeSeconds = 5.0;
+
         public override void Start(ICoreAPI api)
         {
             var channel = api.Network.RegisterChannel("claimflight");
@@ -69,8 +71,8 @@ namespace claimflight
 
                 var pos = player.Entity.ServerPos.AsBlockPos;
                 ILandClaimAPI claimApi = sapi!.World.Claims;
-
                 bool allowed = false;
+
                 try
                 {
                     var claims = claimApi.Get(pos);
@@ -106,8 +108,6 @@ namespace claimflight
             var ch = capi.Network.GetChannel("claimflight");
 
             capi.Event.PlayerJoin += OnClientPlayerJoin;
-
-            // Per-frame updates for instant sync
             capi.Event.RegisterGameTickListener(OnClientTick, 0);
 
             capi.Input.RegisterHotKey("toggleclaimflight", Lang.Get("claimflight:toggle_hotkey") ?? "Toggle Flight", GlKeys.Up, HotkeyType.CharacterControls);
@@ -172,15 +172,32 @@ namespace claimflight
         {
             if (player?.Entity?.Properties != null)
                 clientOriginalFallDamage = player.Entity.Properties.FallDamageMultiplier;
+
+            var worldData = player?.WorldData;
+            if (worldData != null)
+            {
+                worldData.FreeMove = false;
+                worldData.NoClip = false;
+            }
+
+            if (player?.Entity != null)
+            {
+                ResetFallState(player.Entity);
+                player.Entity.Properties.FallDamageMultiplier = 1f;
+            }
+
+            clientIsFlying = false;
+            clientAwaitingAck = false;
         }
 
-        private void ResetFallState(EntityPlayer entity)
+        private void ResetFallState(EntityPlayer? entity)
         {
             if (entity == null) return;
             entity.Properties.FallDamageMultiplier = 0f;
             entity.Attributes.SetFloat("fallDistance", 0f);
-            if (entity.Pos?.Motion != null && entity.Pos.Motion.Y < 0)
-                entity.Pos.Motion.Y = 0;
+            var motion = entity.Pos?.Motion;
+            if (motion != null && motion.Y < -0.1f)
+                motion.Y = 0;
         }
 
         private void OnClientTick(float dt)
@@ -195,31 +212,32 @@ namespace claimflight
 
             var ch = capi.Network.GetChannel("claimflight");
             double nowSeconds = (capi.World?.ElapsedMilliseconds ?? 0) / 1000.0;
-            bool withinGrace = nowSeconds - lastFlightEndTime < LocalFlightGraceSeconds;
+            var entity = player.Entity;
+            if (entity == null) return;
 
-            // Continuous fall protection
-            if (clientIsFlying && player.Entity != null)
+            bool withinFlightGrace = nowSeconds - lastFlightEndTime < LocalFlightGraceSeconds;
+            bool withinSafeWindow = nowSeconds - lastFlightEndTime < PostFlightSafeSeconds;
+
+            // Disable fall damage and reset fall distance while flying or within post-flight safe window
+            if (clientIsFlying || withinSafeWindow)
             {
-                player.Entity.Attributes.SetFloat("fallDistance", 0f);
-                if (player.Entity.Pos?.Motion?.Y < 0)
-                    player.Entity.Pos.Motion.Y *= 0.5;
+                entity.Attributes.SetFloat("fallDistance", 0f);
+                entity.Properties.FallDamageMultiplier = 0f;
+            }
+            else
+            {
+                // Restore normal fall damage multiplier after safety expires
+                entity.Properties.FallDamageMultiplier = clientOriginalFallDamage;
             }
 
-            // Instant restore when server toggles flight off
-            if (clientIsFlying && !worldData.FreeMove && !withinGrace)
+            // Restore when server toggles flight off but client still in flying state
+            if (clientIsFlying && !worldData.FreeMove && !withinFlightGrace)
             {
                 worldData.FreeMove = true;
                 worldData.NoClip = false;
-                if (player.Entity?.Properties != null)
-                    player.Entity.Properties.FallDamageMultiplier = 0f;
-
-                if (player.Entity != null)
-                {
-                    ResetFallState(player.Entity);
-                }
-
-                if (clientResyncTimer > 0.5f)
-                    clientResyncTimer = 0;
+                entity.Properties.FallDamageMultiplier = 0f;
+                ResetFallState(entity);
+                clientResyncTimer = 0;
 
                 if (nowSeconds - lastResyncSendTime >= ResyncDebounceSeconds)
                 {
@@ -228,7 +246,7 @@ namespace claimflight
                 }
             }
 
-            // Resync if local and server states differ
+            // Resync mismatched states
             if (!clientAwaitingAck && worldData.FreeMove != clientIsFlying)
             {
                 if (nowSeconds - lastResyncSendTime >= ResyncDebounceSeconds)
@@ -238,7 +256,7 @@ namespace claimflight
                 }
             }
 
-            // Periodic state sync
+            // Periodic sync
             if (clientResyncTimer >= ClientSyncIntervalSeconds)
             {
                 clientResyncTimer = 0;
@@ -342,7 +360,6 @@ namespace claimflight
 
             player.WorldData.FreeMove = true;
             player.WorldData.NoClip = false;
-
             playerFlightState[player.PlayerUID] = true;
             lastInsideClaim[player.PlayerUID] = DateTime.UtcNow;
 
@@ -361,13 +378,30 @@ namespace claimflight
         {
             if (player.Entity is not EntityPlayer entityPlayer) return;
 
-            entityPlayer.Properties.FallDamageMultiplier = originalFallDamage.TryGetValue(player.PlayerUID, out var val) ? val : 1f;
+            // Store original fall damage, this should be 1f all the time, but I already did it this way so I'm leaving it.
+            float originalFD = originalFallDamage.TryGetValue(player.PlayerUID, out var val) ? val : 1f;
+
+            entityPlayer.Properties.FallDamageMultiplier = 0f;
+
             player.WorldData.FreeMove = false;
             player.WorldData.NoClip = false;
-
             playerFlightState[player.PlayerUID] = false;
 
             channel.SendPacket(new FlightStatusMessage { IsFlying = false }, player);
+
+            // Use a timer to restore fall damage after PostFlightSafeSeconds
+            var restoreTimer = new System.Timers.Timer(PostFlightSafeSeconds * 1000);
+            restoreTimer.AutoReset = false;
+            restoreTimer.Elapsed += (s, e) =>
+            {
+                restoreTimer.Stop();
+                restoreTimer.Dispose();
+                sapi?.Event.EnqueueMainThreadTask(() =>
+                {
+                    entityPlayer.Properties.FallDamageMultiplier = originalFD;
+                }, "restoreFallDamage");
+            };
+            restoreTimer.Start();
 
             if (sendMessage)
             {

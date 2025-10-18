@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ModName>Claim Flight</ModName>
     <ModType>code</ModType>
-    <ModVersion>1.0.6</ModVersion>
+    <ModVersion>1.0.8</ModVersion>
     <ModId>claimflight</ModId>
     <Description>Allows people with build permissions in a claim to use creative-like flight.</Description>
     <Side>universal</Side>
