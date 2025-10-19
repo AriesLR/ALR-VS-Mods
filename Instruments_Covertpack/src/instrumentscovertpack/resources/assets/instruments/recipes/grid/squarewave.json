@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "GT",
+  "ingredients": {
+    "G": {
+      "type": "item",
+      "code": "grandpiano"
+    },
+    "T": {
+      "type": "item",
+      "code": "game:gear-temporal"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "squarewave",
+    "quantity": 1
+  }
+}

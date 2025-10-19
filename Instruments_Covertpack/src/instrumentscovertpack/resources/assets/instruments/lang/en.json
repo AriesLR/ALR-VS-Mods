@@ -1,0 +1,14 @@
+{
+  "item-banjo": "Banjo",
+  "item-bassguitar": "Bass Guitar",
+  "item-brightpiano": "Bright Piano",
+  "item-electricbassguitar": "Electric Bass Guitar",
+  "item-flute": "Flute",
+  "item-leadguitar": "Lead Guitar",
+  "item-nylonguitar": "Nylon Guitar",
+  "item-ocarina": "Ocarina",
+  "item-overdriveguitar": "Overdrive Guitar",
+  "item-squarewave": "Square Wave Synth",
+
+  "game:tabname-instruments": "Instruments"
+}

@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "CR",
+  "ingredients": {
+    "C": {
+      "type": "item",
+      "code": "leadguitar"
+    },
+    "R": {
+      "type": "item",
+      "code": "game:stick"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "overdriveguitar",
+    "quantity": 1
+  }
+}

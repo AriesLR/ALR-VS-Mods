@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "CA",
+  "ingredients": {
+    "C": {
+      "type": "item",
+      "code": "acousticguitar"
+    },
+    "A": {
+      "type": "item",
+      "code": "game:flaxtwine"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "banjo",
+    "quantity": 1
+  }
+}

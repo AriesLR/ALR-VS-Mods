@@ -1,0 +1,458 @@
+{
+	"editor": {},
+	"textureWidth": 32,
+	"textureHeight": 32,
+	"textureSizes": {
+		"electricbassguitartex.png": [32, 32],
+		"steel.png": [64, 64]
+	},
+	"textures": {
+		"electricbassguitartex.png": "item/electricbassguitartex",
+		"steel.png": "game:block/metal/plate/steel.png"
+	},
+	"elements": [
+		{
+			"name": "bodymain",
+			"from": [5, 1, 7.75],
+			"to": [11, 6, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [0, 0, 6, 5]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [8, 10, 9.25, 15]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [0, 5, 6, 10]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [10, 10, 11.25, 15]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [14, 1.25, 8, 0]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [14, 2, 8, 3.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lhorntip",
+			"from": [11.8, 6, 7.75],
+			"to": [12.5, 8.6, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [17, 9, 17.75, 11.5]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [0, 14, 1.25, 16.5]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [20, 2, 20.75, 4.5]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [14, 0, 15.25, 2.5]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [20.75, 24.25, 20, 23]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [23.75, 21, 23, 22.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "rhornside",
+			"from": [11.1, 5.6, 7.75],
+			"to": [11.5, 8.2, 9],
+			"rotationOrigin": [7.275, 6.075, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [23, 8, 23.5, 10.5]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [2, 14, 3.25, 16.5]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [23, 13, 23.5, 15.5]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [14, 3, 15.25, 5.5]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [24.5, 16.25, 24, 15]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [16.5, 24, 16, 25.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lhorntip",
+			"from": [3.6, 6, 7.75],
+			"to": [4.3, 7.8, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [21, 19, 21.75, 20.75]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [17, 6, 18.25, 7.75]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [20, 21, 20.75, 22.75]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [19, 13, 20.25, 14.75]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [23.75, 24.25, 23, 23]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [24.75, 0, 24, 1.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lhorntop",
+			"from": [4.7, 7.8, 7.75],
+			"to": [5.7, 8.6, 9],
+			"rotationOrigin": [8.675, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [24, 9, 25, 9.75]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [24, 5, 25.25, 5.75]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [23.9375, 10, 25, 10.75]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [24, 6, 25.25, 6.75]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [24, 6.25, 23, 5]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [24, 16, 23, 17.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "rhornlow",
+			"from": [-4.4, 5, 7.75],
+			"to": [-2.9, 6, 9],
+			"rotationOrigin": [0.275, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [21, 4, 22.5, 5]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [23, 11, 24.25, 12]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [18, 21, 19.5, 22]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [23, 18, 24.25, 19]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [21.5, 8.25, 20, 7]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [21.5, 9, 20, 10.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lhornc",
+			"from": [4.3, 6, 7.75],
+			"to": [5.3, 7.2, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [22, 8, 23, 9.25]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [21, 2, 22.25, 3.25]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [22, 10, 23, 11.25]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [21, 13, 22.25, 14.25]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [19, 23.25, 18, 22]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [20, 22, 19, 23.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "rhornc",
+			"from": [10.8, 6, 7.75],
+			"to": [11.8, 7.2, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [22, 19, 23, 20.25]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [21, 15, 22.25, 16.25]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [21, 22, 22, 23.25]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [21, 17, 22.25, 18.25]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [23, 23.25, 22, 22]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [24, 2, 23, 3.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "hornroottop",
+			"from": [5.3, 6, 7.75],
+			"to": [10.8, 6.7, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [12, 12, 17.5, 12.75]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [24, 2, 25.25, 2.75]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [13, 8, 18.5, 8.75]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [24, 3, 25.25, 3.75]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [13.5, 5.25, 8, 4]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [13.5, 6, 8, 7.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "neck",
+			"from": [7.3, 6.7, 8.15],
+			"to": [8.8, 12.6, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [6, 0, 7.5, 6]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [5, 10, 5.75, 16]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [6, 6, 7.5, 12]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [6, 12, 6.75, 18]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [24.5, 19.75, 23, 19]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [24.5, 20, 23, 20.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "stringleft",
+			"from": [7.2, 2.6, 7.35],
+			"to": [7.3, 12.9, 7.5],
+			"rotationOrigin": [7.875, 6.475, 7.95],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [42.58416, 29.10619, 43.2104, 52.05531]},
+				"east": {"texture": "#steel.png", "uv": [15.0297, 40.30088, 15.65594, 63.25]},
+				"south": {"texture": "#steel.png", "uv": [45.08911, 20.15044, 45.71535, 43.09956]},
+				"west": {"texture": "#steel.png", "uv": [47.59406, 4.47788, 48.2203, 27.42699]},
+				"up": {"texture": "#steel.png", "uv": [53.2302, 54.29425, 52.60396, 53.73451]},
+				"down": {"texture": "#steel.png", "uv": [60.74505, 47.0177, 60.11881, 47.57743]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "stringleftmid",
+			"from": [6.9, 2.6, 7.35],
+			"to": [7, 13.3, 7.5],
+			"rotationOrigin": [7.575, 6.475, 7.95],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [25.0495, 33.58407, 25.67574, 57.65265]},
+				"east": {"texture": "#steel.png", "uv": [27.55446, 33.58407, 28.18069, 57.65265]},
+				"south": {"texture": "#steel.png", "uv": [37.57426, 31.34513, 38.2005, 55.41372]},
+				"west": {"texture": "#steel.png", "uv": [12.52475, 35.82301, 13.15099, 59.89159]},
+				"up": {"texture": "#steel.png", "uv": [55.73515, 54.29425, 55.10891, 53.73451]},
+				"down": {"texture": "#steel.png", "uv": [60.74505, 49.25664, 60.11881, 49.81637]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "stringmid",
+			"from": [6.6, 2.6, 7.35],
+			"to": [6.7, 13.9, 7.5],
+			"rotationOrigin": [7.275, 6.475, 7.95],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [17.53465, 26.86726, 18.16089, 52.05531]},
+				"east": {"texture": "#steel.png", "uv": [10.0198, 31.34513, 10.64604, 56.53319]},
+				"south": {"texture": "#steel.png", "uv": [20.0396, 33.58407, 20.66584, 58.77212]},
+				"west": {"texture": "#steel.png", "uv": [22.54455, 33.58407, 23.17079, 58.77212]},
+				"up": {"texture": "#steel.png", "uv": [60.74505, 52.05531, 60.11881, 51.49558]},
+				"down": {"texture": "#steel.png", "uv": [60.74505, 53.73451, 60.11881, 54.29425]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "stringrightmid",
+			"from": [6.3, 2.6, 7.35],
+			"to": [6.4, 13.3, 7.5],
+			"rotationOrigin": [6.975, 6.475, 7.95],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [30.05941, 35.82301, 30.68564, 59.89159]},
+				"east": {"texture": "#steel.png", "uv": [32.56436, 35.82301, 33.19059, 59.89159]},
+				"south": {"texture": "#steel.png", "uv": [40.07921, 29.10619, 40.70545, 53.17478]},
+				"west": {"texture": "#steel.png", "uv": [35.06931, 35.82301, 35.69554, 59.89159]},
+				"up": {"texture": "#steel.png", "uv": [63.25, 0.55973, 62.62376, 0]},
+				"down": {"texture": "#steel.png", "uv": [63.25, 2.23894, 62.62376, 2.79867]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "stringright",
+			"from": [6, 2.6, 7.35],
+			"to": [6.1, 12.9, 7.5],
+			"rotationOrigin": [6.675, 6.475, 7.95],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [0, 38.06195, 0.62624, 61.01106]},
+				"east": {"texture": "#steel.png", "uv": [2.50495, 38.06195, 3.13119, 61.01106]},
+				"south": {"texture": "#steel.png", "uv": [5.0099, 38.06195, 5.63614, 61.01106]},
+				"west": {"texture": "#steel.png", "uv": [7.51485, 38.06195, 8.14109, 61.01106]},
+				"up": {"texture": "#steel.png", "uv": [45.71535, 54.29425, 45.08911, 53.73451]},
+				"down": {"texture": "#steel.png", "uv": [48.2203, 53.73451, 47.59406, 54.29425]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "headlow",
+			"from": [6.3, 12.6, 8.15],
+			"to": [9.8, 13.5, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [13, 9, 16.5, 10]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [18, 20, 18.75, 21]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [12, 13, 15.5, 14]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [7, 24, 7.75, 25]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [19.5, 0.75, 16, 0]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [19.5, 1, 16, 1.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "headtop",
+			"from": [6.8, 13.5, 8.15],
+			"to": [9.3, 14.4, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [16, 2, 18.5, 3]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [24, 7, 24.75, 8]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [16, 3, 18.5, 4]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [24, 8, 24.75, 9]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [22.5, 5.75, 20, 5]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [22.5, 6, 20, 6.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lugtop",
+			"from": [4.3, 13.8, 8.4],
+			"to": [4.8, 14.1, 8.75],
+			"rotationOrigin": [5.475, 6.575, 8.75],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [3, 2, 55.5, 39]},
+				"east": {"texture": "#steel.png", "uv": [7, 7, 61.75, 44]},
+				"south": {"texture": "#steel.png", "uv": [3, 3, 55.5, 40]},
+				"west": {"texture": "#steel.png", "uv": [7, 8, 61.75, 45]},
+				"up": {"texture": "#steel.png", "uv": [59.5, 41.75, 3, 5]},
+				"down": {"texture": "#steel.png", "uv": [59.5, 6, 3, 42.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lugrighttop",
+			"from": [3.8, 13.2, 8.4],
+			"to": [4.3, 13.5, 8.75],
+			"rotationOrigin": [4.975, 6.075, 8.75],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [3, 2, 55.5, 39]},
+				"east": {"texture": "#steel.png", "uv": [7, 7, 61.75, 44]},
+				"south": {"texture": "#steel.png", "uv": [3, 3, 55.5, 40]},
+				"west": {"texture": "#steel.png", "uv": [7, 8, 61.75, 45]},
+				"up": {"texture": "#steel.png", "uv": [59.5, 41.75, 3, 5]},
+				"down": {"texture": "#steel.png", "uv": [59.5, 6, 3, 42.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lugleftlow",
+			"from": [3.8, 12.6, 8.4],
+			"to": [4.1, 12.9, 8.75],
+			"rotationOrigin": [4.975, 5.375, 8.75],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [3, 2, 55.5, 39]},
+				"east": {"texture": "#steel.png", "uv": [7, 7, 61.75, 44]},
+				"south": {"texture": "#steel.png", "uv": [3, 3, 55.5, 40]},
+				"west": {"texture": "#steel.png", "uv": [7, 8, 61.75, 45]},
+				"up": {"texture": "#steel.png", "uv": [59.5, 41.75, 3, 5]},
+				"down": {"texture": "#steel.png", "uv": [59.5, 6, 3, 42.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lugrighttop",
+			"from": [7.9, 13.2, 8.4],
+			"to": [8.5, 13.5, 8.75],
+			"rotationOrigin": [9.075, 6.075, 8.75],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [3, 2, 55.5, 39]},
+				"east": {"texture": "#steel.png", "uv": [7, 7, 61.75, 44]},
+				"south": {"texture": "#steel.png", "uv": [3, 3, 55.5, 40]},
+				"west": {"texture": "#steel.png", "uv": [7, 8, 61.75, 45]},
+				"up": {"texture": "#steel.png", "uv": [59.5, 41.75, 3, 5]},
+				"down": {"texture": "#steel.png", "uv": [59.5, 6, 3, 42.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lugleftlow",
+			"from": [8.1, 12.6, 8.4],
+			"to": [8.5, 12.9, 8.75],
+			"rotationOrigin": [9.075, 5.475, 8.75],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [3, 2, 55.5, 39]},
+				"east": {"texture": "#steel.png", "uv": [7, 7, 61.75, 44]},
+				"south": {"texture": "#steel.png", "uv": [3, 3, 55.5, 40]},
+				"west": {"texture": "#steel.png", "uv": [7, 8, 61.75, 45]},
+				"up": {"texture": "#steel.png", "uv": [59.5, 41.75, 3, 5]},
+				"down": {"texture": "#steel.png", "uv": [59.5, 6, 3, 42.75]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "lhornlow",
+			"from": [3.3, 5, 7.75],
+			"to": [5, 6, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [20, 11, 21.75, 12]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [22, 1, 23.25, 2]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [20, 12, 21.75, 13]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [22, 7, 23.25, 8]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [20.75, 16.25, 19, 15]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [20.75, 17, 19, 18.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "bodymidlow",
+			"from": [5.75, -0.5, 7.75],
+			"to": [10.25, 1, 9],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [8, 8, 12.5, 9.5]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [19, 19, 20.25, 20.5]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [0, 10, 4.5, 11.5]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [20, 0, 21.25, 1.5]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [4.5, 13.25, 0, 12]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [16.5, 10, 12, 11.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "Fretboard",
+			"from": [6.75, 2.2, 9.05],
+			"to": [9.25, 2.7, 9.2],
+			"rotationOrigin": [7.975, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#steel.png", "uv": [0, 0, 64, 64]},
+				"east": {"texture": "#steel.png", "uv": [-18.6, 105.91707, -16.42632, 109.14146]},
+				"south": {"texture": "#steel.png", "uv": [17.56842, 13.94146, 39.30526, 17.16585]},
+				"west": {"texture": "#steel.png", "uv": [9.26316, 57.77561, 11.43684, 61]},
+				"up": {"texture": "#steel.png", "uv": [26, 44.59268, 4.26316, 42.98049]},
+				"down": {"texture": "#steel.png", "uv": [23, 52.42927, 1.26316, 54.04146]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		},
+		{
+			"name": "bodylow",
+			"from": [7.1, -1.5, 7.75],
+			"to": [9.35, -0.5, 9],
+			"rotationOrigin": [8.075, 6.475, 8.75],
+			"faces": {
+				"north": {"texture": "#electricbassguitartex.png", "uv": [16, 4, 18.25, 5]},
+				"east": {"texture": "#electricbassguitartex.png", "uv": [21, 21, 22.25, 22]},
+				"south": {"texture": "#electricbassguitartex.png", "uv": [16, 5, 18.25, 6]},
+				"west": {"texture": "#electricbassguitartex.png", "uv": [22, 0, 23.25, 1]},
+				"up": {"texture": "#electricbassguitartex.png", "uv": [16.25, 7.25, 14, 6]},
+				"down": {"texture": "#electricbassguitartex.png", "uv": [14.25, 14, 12, 15.25]}
+			},
+			"rotationX": -180,
+			"rotationY": 0,
+			"rotationZ": -180
+		}
+	],
+	"animations": []
+}

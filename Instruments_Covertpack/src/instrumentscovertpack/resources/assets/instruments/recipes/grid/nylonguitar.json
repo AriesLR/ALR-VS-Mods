@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "CH",
+  "ingredients": {
+    "C": {
+      "type": "item",
+      "code": "acousticguitar"
+    },
+    "H": {
+      "type": "item",
+      "code": "game:drygrass"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "nylonguitar",
+    "quantity": 1
+  }
+}

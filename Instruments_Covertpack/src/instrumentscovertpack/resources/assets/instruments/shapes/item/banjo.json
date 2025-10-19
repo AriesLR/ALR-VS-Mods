@@ -1,0 +1,265 @@
+{
+	"editor": {},
+	"textureWidth": 32,
+	"textureHeight": 32,
+	"textureSizes": {
+		"banjotex.png": [32, 32]
+	},
+	"textures": {
+		"banjotex.png": "item/banjotex.png"
+	},
+	"elements": [
+		{
+			"name": "Body",
+			"from": [8, 2, 10],
+			"to": [8, 2, 10],
+			"rotationOrigin": [8, 2, 10],
+			"rotationX": 90,
+			"rotationY": 0,
+			"rotationZ": 2.5,
+			"children": [
+				{
+					"name": "Bodycentral",
+					"from": [-2, 0, -4],
+					"to": [3, 1, 1],
+					"rotationOrigin": [0, 0, 0],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [5, 7, 10, 8]},
+						"east": {"texture": "#banjotex.png", "uv": [5, 8, 10, 9]},
+						"south": {"texture": "#banjotex.png", "uv": [9, 0, 14, 1]},
+						"west": {"texture": "#banjotex.png", "uv": [9, 1, 14, 2]},
+						"up": {"texture": "#banjotex.png", "uv": [5, 5, 0, 0]},
+						"down": {"texture": "#banjotex.png", "uv": [5, 5, 0, 10]}
+					}
+				},
+				{
+					"name": "Bottommiddle",
+					"from": [-1.5, 0, 1],
+					"to": [2.5, 1, 1.5],
+					"rotationOrigin": [0, 0, 5],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [9, 2, 13, 3]},
+						"east": {"texture": "#banjotex.png", "uv": [8, 15, 8.5, 16]},
+						"south": {"texture": "#banjotex.png", "uv": [9, 3, 13, 4]},
+						"west": {"texture": "#banjotex.png", "uv": [9, 15, 9.5, 16]},
+						"up": {"texture": "#banjotex.png", "uv": [14, 12.5, 10, 12]},
+						"down": {"texture": "#banjotex.png", "uv": [16, 11, 12, 11.5]}
+					}
+				},
+				{
+					"name": "Bottomedge",
+					"from": [-1, 0, 1.5],
+					"to": [2, 1, 2],
+					"rotationOrigin": [0, 0, 5.5],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [10, 8, 13, 9]},
+						"east": {"texture": "#banjotex.png", "uv": [11, 15, 11.5, 16]},
+						"south": {"texture": "#banjotex.png", "uv": [0, 11, 3, 12]},
+						"west": {"texture": "#banjotex.png", "uv": [12, 15, 12.5, 16]},
+						"up": {"texture": "#banjotex.png", "uv": [16, 8.5, 13, 8]},
+						"down": {"texture": "#banjotex.png", "uv": [16, 9, 13, 9.5]}
+					}
+				},
+				{
+					"name": "Topedge",
+					"from": [-1, 0, -5],
+					"to": [2, 1, -4.5],
+					"rotationOrigin": [0, 0, -1],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [3, 11, 6, 12]},
+						"east": {"texture": "#banjotex.png", "uv": [13, 15, 13.5, 16]},
+						"south": {"texture": "#banjotex.png", "uv": [6, 11, 9, 12]},
+						"west": {"texture": "#banjotex.png", "uv": [14, 15, 14.5, 16]},
+						"up": {"texture": "#banjotex.png", "uv": [14, 13.5, 11, 13]},
+						"down": {"texture": "#banjotex.png", "uv": [3, 14, 0, 14.5]}
+					}
+				},
+				{
+					"name": "Topmiddle",
+					"from": [-1.5, 0, -4.5],
+					"to": [2.5, 1, -4],
+					"rotationOrigin": [0, 0, -0.5],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [9, 4, 13, 5]},
+						"east": {"texture": "#banjotex.png", "uv": [15, 14, 15.5, 15]},
+						"south": {"texture": "#banjotex.png", "uv": [5, 9, 9, 10]},
+						"west": {"texture": "#banjotex.png", "uv": [15, 15, 15.5, 16]},
+						"up": {"texture": "#banjotex.png", "uv": [4, 13.5, 0, 13]},
+						"down": {"texture": "#banjotex.png", "uv": [17, 2, 13, 2.5]}
+					}
+				},
+				{
+					"name": "Rightmiddle",
+					"from": [3, 0, -3.5],
+					"to": [3.5, 1, 0.5],
+					"rotationOrigin": [5, 0, 0],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [0, 16, 0.5, 17]},
+						"east": {"texture": "#banjotex.png", "uv": [9, 5, 13, 6]},
+						"south": {"texture": "#banjotex.png", "uv": [16, 0, 16.5, 1]},
+						"west": {"texture": "#banjotex.png", "uv": [9, 6, 13, 7]},
+						"up": {"texture": "#banjotex.png", "uv": [13.5, 7, 13, 3]},
+						"down": {"texture": "#banjotex.png", "uv": [4.5, 13, 4, 17]}
+					}
+				},
+				{
+					"name": "Rightedge",
+					"from": [3.5, 0, -3],
+					"to": [4, 1, 0],
+					"rotationOrigin": [5.5, 0, 0],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [1, 16, 1.5, 17]},
+						"east": {"texture": "#banjotex.png", "uv": [9, 11, 12, 12]},
+						"south": {"texture": "#banjotex.png", "uv": [16, 1, 16.5, 2]},
+						"west": {"texture": "#banjotex.png", "uv": [11, 10, 14, 11]},
+						"up": {"texture": "#banjotex.png", "uv": [3.5, 17, 3, 14]},
+						"down": {"texture": "#banjotex.png", "uv": [14.5, 3, 14, 6]}
+					}
+				},
+				{
+					"name": "Leftedge",
+					"from": [-3, 0, -3],
+					"to": [-2.5, 1, 0],
+					"rotationOrigin": [-1, 0, 0],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [2, 16, 2.5, 17]},
+						"east": {"texture": "#banjotex.png", "uv": [0, 12, 3, 13]},
+						"south": {"texture": "#banjotex.png", "uv": [16, 5, 16.5, 6]},
+						"west": {"texture": "#banjotex.png", "uv": [3, 12, 6, 13]},
+						"up": {"texture": "#banjotex.png", "uv": [6.5, 17, 6, 14]},
+						"down": {"texture": "#banjotex.png", "uv": [7.5, 14, 7, 17]}
+					}
+				},
+				{
+					"name": "Leftmiddle",
+					"from": [-2.5, 0, -3.5],
+					"to": [-2, 1, 0.5],
+					"rotationOrigin": [-0.5, 0, 0],
+					"faces": {
+						"north": {"texture": "#banjotex.png", "uv": [16, 6, 16.5, 7]},
+						"east": {"texture": "#banjotex.png", "uv": [9, 9, 13, 10]},
+						"south": {"texture": "#banjotex.png", "uv": [8, 16, 8.5, 17]},
+						"west": {"texture": "#banjotex.png", "uv": [0, 10, 4, 11]},
+						"up": {"texture": "#banjotex.png", "uv": [5.5, 17, 5, 13]},
+						"down": {"texture": "#banjotex.png", "uv": [10.5, 13, 10, 17]}
+					}
+				},
+				{
+					"name": "neck",
+					"from": [0, 0, 0],
+					"to": [0, 0, 0],
+					"rotationOrigin": [0, 0, 0],
+					"children": [
+						{
+							"name": "Neckmain",
+							"from": [-0.25, 0.5, -11.75],
+							"to": [1.25, 1, -5],
+							"rotationOrigin": [1, 0, -5],
+							"faces": {
+								"north": {"texture": "#banjotex.png", "uv": [14, 13, 15.5, 13.5]},
+								"east": {"texture": "#banjotex.png", "uv": [4, 10, 10.75, 10.5]},
+								"south": {"texture": "#banjotex.png", "uv": [0, 15, 1.5, 15.5]},
+								"west": {"texture": "#banjotex.png", "uv": [10, 7, 16.75, 7.5]},
+								"up": {"texture": "#banjotex.png", "uv": [6.5, 6.75, 5, 0]},
+								"down": {"texture": "#banjotex.png", "uv": [8.5, 0, 7, 6.75]}
+							}
+						},
+						{
+							"name": "Head",
+							"from": [-1, 0, -13.25],
+							"to": [-1, 0, -13.25],
+							"rotationOrigin": [-1, 0, -13.25],
+							"children": [
+								{
+									"name": "Neckjoint",
+									"from": [0.75, 0.5, 1.25],
+									"to": [2.25, 1, 1.5],
+									"rotationOrigin": [1.5, 0, 1.5],
+									"faces": {
+										"north": {"texture": "#banjotex.png", "uv": [15, 3, 16.5, 3.5]},
+										"east": {"texture": "#banjotex.png", "uv": [9, 16, 9.25, 16.5]},
+										"south": {"texture": "#banjotex.png", "uv": [15, 4, 16.5, 4.5]},
+										"west": {"texture": "#banjotex.png", "uv": [16, 10, 16.25, 10.5]},
+										"up": {"texture": "#banjotex.png", "uv": [17.5, 8.25, 16, 8]},
+										"down": {"texture": "#banjotex.png", "uv": [17.5, 9, 16, 9.25]}
+									}
+								},
+								{
+									"name": "Tunerright",
+									"from": [2.5, 0.75, 0.75],
+									"to": [3, 1, 1],
+									"rotationOrigin": [2.25, 0, 1.25],
+									"faces": {
+										"north": {"texture": "#banjotex.png", "uv": [11, 16, 11.5, 16.25]},
+										"east": {"texture": "#banjotex.png", "uv": [17, 0, 17.25, 0.25]},
+										"south": {"texture": "#banjotex.png", "uv": [16, 11, 16.5, 11.25]},
+										"west": {"texture": "#banjotex.png", "uv": [1, 17, 1.25, 17.25]},
+										"up": {"texture": "#banjotex.png", "uv": [12.5, 16.25, 12, 16]},
+										"down": {"texture": "#banjotex.png", "uv": [16.5, 12, 16, 12.25]}
+									}
+								},
+								{
+									"name": "Tunermiddle",
+									"from": [2.5, 0.75, 0],
+									"to": [3, 1, 0.25],
+									"rotationOrigin": [2.25, 0, 0.5],
+									"faces": {
+										"north": {"texture": "#banjotex.png", "uv": [13, 16, 13.5, 16.25]},
+										"east": {"texture": "#banjotex.png", "uv": [17, 1, 17.25, 1.25]},
+										"south": {"texture": "#banjotex.png", "uv": [16, 13, 16.5, 13.25]},
+										"west": {"texture": "#banjotex.png", "uv": [2, 17, 2.25, 17.25]},
+										"up": {"texture": "#banjotex.png", "uv": [14.5, 16.25, 14, 16]},
+										"down": {"texture": "#banjotex.png", "uv": [16.5, 14, 16, 14.25]}
+									}
+								},
+								{
+									"name": "Headmiddle",
+									"from": [0.5, 0.25, 0],
+									"to": [2.5, 1, 1.25],
+									"rotationOrigin": [1.5, 0, 0.5],
+									"faces": {
+										"north": {"texture": "#banjotex.png", "uv": [14, 0, 16, 0.75]},
+										"east": {"texture": "#banjotex.png", "uv": [14, 12, 15.25, 12.75]},
+										"south": {"texture": "#banjotex.png", "uv": [14, 1, 16, 1.75]},
+										"west": {"texture": "#banjotex.png", "uv": [13, 14, 14.25, 14.75]},
+										"up": {"texture": "#banjotex.png", "uv": [8, 13.25, 6, 12]},
+										"down": {"texture": "#banjotex.png", "uv": [10, 12, 8, 13.25]}
+									}
+								},
+								{
+									"name": "Headtop",
+									"from": [0.75, 0.25, -0.75],
+									"to": [2.25, 1, 0],
+									"rotationOrigin": [1.5, 0, 0],
+									"faces": {
+										"north": {"texture": "#banjotex.png", "uv": [14, 6, 15.5, 6.75]},
+										"east": {"texture": "#banjotex.png", "uv": [2, 15, 2.75, 15.75]},
+										"south": {"texture": "#banjotex.png", "uv": [8, 14, 9.5, 14.75]},
+										"west": {"texture": "#banjotex.png", "uv": [15, 5, 15.75, 5.75]},
+										"up": {"texture": "#banjotex.png", "uv": [15.5, 10.75, 14, 10]},
+										"down": {"texture": "#banjotex.png", "uv": [12.5, 14, 11, 14.75]}
+									}
+								},
+								{
+									"name": "Tunerleft",
+									"from": [0.25, 0.75, -0.5],
+									"to": [0.75, 1, -0.25],
+									"rotationOrigin": [0, 0, 0],
+									"faces": {
+										"north": {"texture": "#banjotex.png", "uv": [15, 16, 15.5, 16.25]},
+										"east": {"texture": "#banjotex.png", "uv": [17, 2, 17.25, 2.25]},
+										"south": {"texture": "#banjotex.png", "uv": [16, 15, 16.5, 15.25]},
+										"west": {"texture": "#banjotex.png", "uv": [3, 17, 3.25, 17.25]},
+										"up": {"texture": "#banjotex.png", "uv": [16.5, 16.25, 16, 16]},
+										"down": {"texture": "#banjotex.png", "uv": [0.5, 17, 0, 17.25]}
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"animations": []
+}

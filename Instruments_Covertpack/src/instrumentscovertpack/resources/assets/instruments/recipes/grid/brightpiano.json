@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "GP",
+  "ingredients": {
+    "G": {
+      "type": "item",
+      "code": "grandpiano"
+    },
+    "P": {
+      "type": "item",
+      "code": "game:plank-*"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "brightpiano",
+    "quantity": 1
+  }
+}

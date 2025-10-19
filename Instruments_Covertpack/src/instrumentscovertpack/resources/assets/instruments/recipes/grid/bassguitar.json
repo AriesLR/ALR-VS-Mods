@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "CM",
+  "ingredients": {
+    "C": {
+      "type": "item",
+      "code": "acousticguitar"
+    },
+    "M": {
+      "type": "block",
+      "code": "game:metal-parts"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "bassguitar",
+    "quantity": 1
+  }
+}

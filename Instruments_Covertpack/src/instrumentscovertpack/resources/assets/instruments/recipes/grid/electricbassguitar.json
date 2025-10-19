@@ -1,0 +1,22 @@
+{
+  "ingredientPattern": "CW",
+  "ingredients": {
+    "C": {
+      "type": "item",
+      "code": "acousticguitar"
+    },
+    "W": {
+      "type": "item",
+      "code": "game:gear-temporal"
+    }
+  },
+  "width": 2,
+  "height": 1,
+  "recipeGroup": 1,
+  "shapeless": false,
+  "output": {
+    "type": "item",
+    "code": "electricbassguitar",
+    "quantity": 1
+  }
+}
