@@ -27,10 +27,8 @@ namespace claimflight
     {
         private ICoreServerAPI? sapi;
         private ICoreClientAPI? capi;
-        private const int TickMs = 1000;
 
         private readonly Dictionary<string, bool> playerFlightState = new();
-        private readonly Dictionary<string, float> originalFallDamage = new();
         private readonly Dictionary<string, DateTime> lastInsideClaim = new();
         private readonly Dictionary<string, System.Timers.Timer> leaveClaimTimers = new();
 
@@ -39,19 +37,17 @@ namespace claimflight
 
         private bool clientIsFlying = false;
         private bool clientAwaitingAck = false;
-        private float clientOriginalFallDamage = 1f;
         private double clientResyncTimer = 0;
         private double lastFlightEndTime = 0;
 
         private const int FlightDisableDelaySeconds = 30;
         private const int LeaveClaimGraceSeconds = 5;
         private const int ClientSyncIntervalSeconds = 3;
-
         private const double LocalFlightGraceSeconds = 0.15;
-        private double lastResyncSendTime = 0;
-        private const double ResyncDebounceSeconds = 0.25;
-
         private const double PostFlightSafeSeconds = 5.0;
+
+        private long? clientTickListenerId;
+        private long? serverTickListenerId;
 
         public override void Start(ICoreAPI api)
         {
@@ -84,7 +80,7 @@ namespace claimflight
 
                 if (!allowed)
                 {
-                    DisableFlightServerSide(player, channel, sendMessage: true, customMessageKey: "claimflight:deny_flight");
+                    DisableFlightServerSide(player, channel, sendMessage: true, "claimflight:deny_flight");
                     return;
                 }
 
@@ -98,8 +94,6 @@ namespace claimflight
             {
                 playerFlightState[player.PlayerUID] = msg.IsFlying;
             });
-
-            sapi.Event.RegisterGameTickListener(OnServerTick, TickMs);
         }
 
         public override void StartClientSide(ICoreClientAPI api)
@@ -108,13 +102,13 @@ namespace claimflight
             var ch = capi.Network.GetChannel("claimflight");
 
             capi.Event.PlayerJoin += OnClientPlayerJoin;
-            capi.Event.RegisterGameTickListener(OnClientTick, 0);
 
             capi.Input.RegisterHotKey("toggleclaimflight", Lang.Get("claimflight:toggle_hotkey") ?? "Toggle Flight", GlKeys.Up, HotkeyType.CharacterControls);
             capi.Input.SetHotKeyHandler("toggleclaimflight", (comb) =>
             {
                 try
                 {
+                    if (clientAwaitingAck) return true;
                     if ((DateTime.UtcNow - lastToggleTime).TotalSeconds >= ToggleCooldownSeconds)
                     {
                         ch.SendPacket(new FlightToggleRequestMessage());
@@ -123,7 +117,6 @@ namespace claimflight
                     }
                 }
                 catch { }
-
                 return true;
             });
 
@@ -148,7 +141,8 @@ namespace claimflight
                 {
                     if (msg.IsFlying)
                     {
-                        clientOriginalFallDamage = entity.Properties.FallDamageMultiplier;
+                        capi?.Logger.Notification("[ClaimFlight] Client flight enabled, registering tick listener.");
+                        RegisterClientTick();
                         worldData.FreeMove = true;
                         worldData.NoClip = false;
                         entity.Properties.FallDamageMultiplier = 0f;
@@ -156,11 +150,12 @@ namespace claimflight
                     }
                     else
                     {
+                        capi?.Logger.Notification("[ClaimFlight] Client flight disabled, unregistering tick listener.");
+                        UnregisterClientTick();
                         worldData.FreeMove = false;
                         worldData.NoClip = false;
-                        entity.Properties.FallDamageMultiplier = clientOriginalFallDamage;
+                        entity.Properties.FallDamageMultiplier = 1f;
                         ResetFallState(entity);
-
                         lastFlightEndTime = (capi?.World?.ElapsedMilliseconds ?? 0) / 1000.0;
                     }
                 }
@@ -168,11 +163,38 @@ namespace claimflight
             });
         }
 
+        private void RegisterClientTick()
+        {
+            if (capi == null || clientTickListenerId != null) return;
+            clientTickListenerId = capi.Event.RegisterGameTickListener(OnClientTick, 0);
+            capi.Logger.Notification("[ClaimFlight] Client tick listener registered.");
+        }
+
+        private void UnregisterClientTick()
+        {
+            if (capi == null || clientTickListenerId == null) return;
+            capi.Event.UnregisterGameTickListener(clientTickListenerId.Value);
+            clientTickListenerId = null;
+            capi.Logger.Notification("[ClaimFlight] Client tick listener unregistered.");
+        }
+
+        private void RegisterServerTick()
+        {
+            if (sapi == null || serverTickListenerId != null) return;
+            serverTickListenerId = sapi.Event.RegisterGameTickListener(OnServerTick, 1000);
+            sapi.Logger.Notification("[ClaimFlight] Server tick listener registered.");
+        }
+
+        private void UnregisterServerTick()
+        {
+            if (sapi == null || serverTickListenerId == null) return;
+            sapi.Event.UnregisterGameTickListener(serverTickListenerId.Value);
+            serverTickListenerId = null;
+            sapi.Logger.Notification("[ClaimFlight] Server tick listener unregistered.");
+        }
+
         private void OnClientPlayerJoin(IClientPlayer player)
         {
-            if (player?.Entity?.Properties != null)
-                clientOriginalFallDamage = player.Entity.Properties.FallDamageMultiplier;
-
             var worldData = player?.WorldData;
             if (worldData != null)
             {
@@ -207,18 +229,12 @@ namespace claimflight
 
             var player = capi.World?.Player;
             if (player == null) return;
-            var worldData = player.WorldData;
-            if (worldData == null) return;
-
-            var ch = capi.Network.GetChannel("claimflight");
-            double nowSeconds = (capi.World?.ElapsedMilliseconds ?? 0) / 1000.0;
             var entity = player.Entity;
             if (entity == null) return;
 
-            bool withinFlightGrace = nowSeconds - lastFlightEndTime < LocalFlightGraceSeconds;
+            double nowSeconds = (capi.World?.ElapsedMilliseconds ?? 0) / 1000.0;
             bool withinSafeWindow = nowSeconds - lastFlightEndTime < PostFlightSafeSeconds;
 
-            // Disable fall damage and reset fall distance while flying or within post-flight safe window
             if (clientIsFlying || withinSafeWindow)
             {
                 entity.Attributes.SetFloat("fallDistance", 0f);
@@ -226,67 +242,41 @@ namespace claimflight
             }
             else
             {
-                // Restore normal fall damage multiplier after safety expires
-                entity.Properties.FallDamageMultiplier = clientOriginalFallDamage;
+                entity.Properties.FallDamageMultiplier = 1f;
             }
 
-            // Restore when server toggles flight off but client still in flying state
-            if (clientIsFlying && !worldData.FreeMove && !withinFlightGrace)
-            {
-                worldData.FreeMove = true;
-                worldData.NoClip = false;
-                entity.Properties.FallDamageMultiplier = 0f;
-                ResetFallState(entity);
-                clientResyncTimer = 0;
-
-                if (nowSeconds - lastResyncSendTime >= ResyncDebounceSeconds)
-                {
-                    ch.SendPacket(new FlightStatusMessage { IsFlying = true });
-                    lastResyncSendTime = nowSeconds;
-                }
-            }
-
-            // Resync mismatched states
-            if (!clientAwaitingAck && worldData.FreeMove != clientIsFlying)
-            {
-                if (nowSeconds - lastResyncSendTime >= ResyncDebounceSeconds)
-                {
-                    ch.SendPacket(new FlightStatusMessage { IsFlying = clientIsFlying });
-                    lastResyncSendTime = nowSeconds;
-                }
-            }
-
-            // Periodic sync
             if (clientResyncTimer >= ClientSyncIntervalSeconds)
             {
                 clientResyncTimer = 0;
+                var ch = capi.Network.GetChannel("claimflight");
                 ch.SendPacket(new FlightStatusMessage { IsFlying = clientIsFlying });
-                lastResyncSendTime = nowSeconds;
             }
         }
 
         private void OnServerTick(float dt)
         {
             if (sapi == null) return;
+
             var channel = sapi.Network.GetChannel("claimflight");
             var claimApi = sapi.World.Claims;
+            bool anyFlying = false;
 
             foreach (var player in sapi.World.AllOnlinePlayers)
             {
                 if (player?.Entity == null) continue;
                 if (player is not IServerPlayer splayer) continue;
 
+                bool isFlying = playerFlightState.TryGetValue(splayer.PlayerUID, out var flying) && flying;
+                if (isFlying) anyFlying = true;
+
                 var pos = splayer.Entity.ServerPos.AsBlockPos;
                 bool allowed = false;
-
                 try
                 {
                     var claims = claimApi.Get(pos);
                     allowed = claims != null && claims.Length > 0 && claimApi.TryAccess(splayer, pos, EnumBlockAccessFlags.BuildOrBreak);
                 }
                 catch { }
-
-                bool isFlying = playerFlightState.TryGetValue(splayer.PlayerUID, out var flying) && flying;
 
                 if (!allowed && isFlying)
                 {
@@ -316,7 +306,8 @@ namespace claimflight
                                 sapi!.Event.EnqueueMainThreadTask(() =>
                                 {
                                     splayer.SendMessage(GlobalConstants.InfoLogChatGroup,
-                                        Lang.Get("claimflight:leave_claim_timer", displaySeconds) ?? $"Flight will disable in {displaySeconds} seconds",
+                                        Lang.Get("claimflight:leave_claim_timer", displaySeconds) ??
+                                        $"Flight will disable in {displaySeconds} seconds",
                                         EnumChatType.Notification);
                                 }, "claimflight_warn");
                             }
@@ -327,8 +318,7 @@ namespace claimflight
                             {
                                 sapi!.Event.EnqueueMainThreadTask(() =>
                                 {
-                                    DisableFlightServerSide(splayer, channel, sendMessage: true,
-                                        customMessageKey: "claimflight:flight_disabled_outside_claim");
+                                    DisableFlightServerSide(splayer, channel, true, "claimflight:flight_disabled_outside_claim");
                                     timer.Stop();
                                     leaveClaimTimers.Remove(splayer.PlayerUID);
                                 }, "claimflight_disable");
@@ -349,47 +339,45 @@ namespace claimflight
                     }
                 }
             }
+
+            if (!anyFlying)
+            {
+                UnregisterServerTick();
+            }
         }
 
         private void EnableFlightServerSide(IServerPlayer player, IServerNetworkChannel channel, bool sendMessage = false, string? customMessageKey = null)
         {
             if (player.Entity is not EntityPlayer entityPlayer) return;
-
-            if (!originalFallDamage.ContainsKey(player.PlayerUID))
-                originalFallDamage[player.PlayerUID] = entityPlayer.Properties.FallDamageMultiplier;
+            RegisterServerTick();
 
             player.WorldData.FreeMove = true;
             player.WorldData.NoClip = false;
             playerFlightState[player.PlayerUID] = true;
             lastInsideClaim[player.PlayerUID] = DateTime.UtcNow;
+            entityPlayer.Properties.FallDamageMultiplier = 0f;
 
             channel.SendPacket(new FlightStatusMessage { IsFlying = true }, player);
+            sapi?.Logger.Notification($"[ClaimFlight] Enabled flight for {player.PlayerName}");
 
             if (sendMessage)
             {
                 string messageKey = customMessageKey ?? "claimflight:flight_enabled";
-                player.SendMessage(GlobalConstants.InfoLogChatGroup,
-                    Lang.Get(messageKey) ?? "Flight enabled!",
-                    EnumChatType.Notification);
+                player.SendMessage(GlobalConstants.InfoLogChatGroup, Lang.Get(messageKey) ?? "Flight enabled!", EnumChatType.Notification);
             }
         }
 
         private void DisableFlightServerSide(IServerPlayer player, IServerNetworkChannel channel, bool sendMessage = false, string? customMessageKey = null)
         {
             if (player.Entity is not EntityPlayer entityPlayer) return;
-
-            // Store original fall damage, this should be 1f all the time, but I already did it this way so I'm leaving it.
-            float originalFD = originalFallDamage.TryGetValue(player.PlayerUID, out var val) ? val : 1f;
+            sapi?.Logger.Notification($"[ClaimFlight] Disabled flight for {player.PlayerName}");
 
             entityPlayer.Properties.FallDamageMultiplier = 0f;
-
             player.WorldData.FreeMove = false;
             player.WorldData.NoClip = false;
             playerFlightState[player.PlayerUID] = false;
-
             channel.SendPacket(new FlightStatusMessage { IsFlying = false }, player);
 
-            // Use a timer to restore fall damage after PostFlightSafeSeconds
             var restoreTimer = new System.Timers.Timer(PostFlightSafeSeconds * 1000);
             restoreTimer.AutoReset = false;
             restoreTimer.Elapsed += (s, e) =>
@@ -398,7 +386,7 @@ namespace claimflight
                 restoreTimer.Dispose();
                 sapi?.Event.EnqueueMainThreadTask(() =>
                 {
-                    entityPlayer.Properties.FallDamageMultiplier = originalFD;
+                    entityPlayer.Properties.FallDamageMultiplier = 1f;
                 }, "restoreFallDamage");
             };
             restoreTimer.Start();
@@ -406,9 +394,7 @@ namespace claimflight
             if (sendMessage)
             {
                 string messageKey = customMessageKey ?? "claimflight:flight_disabled";
-                player.SendMessage(GlobalConstants.InfoLogChatGroup,
-                    Lang.Get(messageKey) ?? "Flight disabled!",
-                    EnumChatType.Notification);
+                player.SendMessage(GlobalConstants.InfoLogChatGroup, Lang.Get(messageKey) ?? "Flight disabled!", EnumChatType.Notification);
             }
         }
     }
