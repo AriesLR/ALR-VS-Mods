@@ -6,5 +6,6 @@ Find (almost) all of my mods within this repo.
 - [Butchering FotSA Bovinae Compatibility Patch](https://github.com/AriesLR/ALR-VS-Mods/tree/main/ButcheringFotSABovinaeCompat)
 - [Claim Flight](https://github.com/AriesLR/ALR-VS-Mods/tree/main/ClaimFlight)
 - [Floral Zones xSkills Forestry Compatibility Patch](https://github.com/AriesLR/ALR-VS-Mods/tree/main/FloralZonesXSkillsForestryCompat)
-- [Story Location Regen](https://github.com/AriesLR/ALR-VS-Mods/tree/main/StoryLocationRegen)
 - [Instruments_Covertpack](https://github.com/AriesLR/ALR-VS-Mods/tree/main/Instruments_Covertpack)
+- [Story Location Regen](https://github.com/AriesLR/ALR-VS-Mods/tree/main/StoryLocationRegen)
+- [ToastLib](https://github.com/AriesLR/ALR-VS-Mods/tree/main/ToastLib)
