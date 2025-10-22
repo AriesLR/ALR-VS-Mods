@@ -1,8 +1,8 @@
 {
-  "claimflight:flight_enabled": "[ClaimFlight] Flight enabled!",
-  "claimflight:flight_disabled": "[ClaimFlight] Flight disabled!",
-  "claimflight:deny_flight": "[ClaimFlight] You can only enable flight while inside a claim where you have build permissions.",
   "claimflight:toggle_hotkey": "Land Claim Fly Mode On/Off",
-  "claimflight:leave_claim_timer": "[ClaimFlight] Warning: You are outside a claim. Flight will disable in {0} seconds.",
-  "claimflight:flight_disabled_outside_claim": "[ClaimFlight] Flight disabled because you left the claim for too long."
+  "claimflight:flight_enabled": "Claim Flight: <font color=\"lightgreen\" weight=\"bold\">Enabled</font>",
+  "claimflight:flight_disabled": "Claim Flight: <font color=\"lightcoral\" weight=\"bold\">Disabled</font>",
+  "claimflight:deny_flight": "<font color=\"yellow\">You can only enable flight while inside a claim where you have build permissions.</font>",
+  "claimflight:leave_claim_timer": "<font color=\"lightcoral\" weight=\"bold\">Warning:</font> You are outside a claim. Flight will disable in <font color=\"yellow\">{0}</font> seconds.",
+  "claimflight:flight_disabled_outside_claim": "<font color=\"yellow\">Flight disabled because you left the claim for too long.</font>"
 }

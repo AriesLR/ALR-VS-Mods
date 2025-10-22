@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ModName>Claim Flight</ModName>
     <ModType>code</ModType>
-    <ModVersion>1.0.9</ModVersion>
+    <ModVersion>1.1.0</ModVersion>
     <ModId>claimflight</ModId>
     <Description>Allows people with build permissions in a claim to use creative-like flight.</Description>
     <Side>universal</Side>
@@ -19,6 +19,8 @@
   <!-- Dependencies -->
   <ItemGroup>
     <Dependencies Include="game" Version="*" />
+	<Dependencies Include="vsimgui" Version="*" />
+	<Dependencies Include="toastlib" Version="*" />
   </ItemGroup>
 
   <!-- Project settings -->
