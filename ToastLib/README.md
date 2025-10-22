@@ -3,7 +3,7 @@
 A library mod leveraging the ImGui mod by Maltiez to draw toast style popups.
 
 ## Requirements
-- [Dear ImGui](https://mods.vintagestory.at/imgui)
+- [ImGui](https://mods.vintagestory.at/imgui)
 
 ### VTML Support
 
