@@ -1,0 +1,4 @@
+{
+  "toastlib:example_toast": "<font color=\"lightgreen\">Colored Text: lightgreen</font> <br><br> <font color=\"#00f2ff\">Colored Text: #00f2ff</font> <br><br> <strong>strong</strong> <br><br> Line break",
+  "toastlib:wrap_toast": "<font color=\"lightgoldenrodyellow\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque auctor tortor, sed ornare magna egestas eget. Pellentesque nec velit.</font>"
+}
