@@ -1,4 +1,20 @@
 {
-  "toastlib:example_toast": "<font color=\"lightgreen\">Colored Text: lightgreen</font> <br><br> <font color=\"#00f2ff\">Colored Text: #00f2ff</font> <br><br> <strong>strong</strong> <br><br> Line break",
-  "toastlib:wrap_toast": "<font color=\"lightgoldenrodyellow\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque auctor tortor, sed ornare magna egestas eget. Pellentesque nec velit.</font>"
+  "toastlib:example_cmd_desc": "Display an example toast.",
+  "toastlib:wrap_cmd_desc": "Display an example toast using word wrapping.",
+  "toastlib:placeholder_cmd_desc": "Display an example toast that uses a placeholder in the lang entry.",
+  "toastlib:placeholderadv_cmd_desc": "Display an example toast that uses a placeholder in the lang entry also using ShowToastAdv.",
+  "toastlib:multi_cmd_desc": "Display multiple example toasts.",
+  "toastlib:multiadv_cmd_desc": "Display multiple example toasts using ShowToastAdv.",
+
+  "toastlib:example_toast": "<font color=\"lightgreen\">Colored Text: lightgreen</font><br><br><font color=\"#00F2FF\">Colored Text: #00F2FF</font><br><br><strong>strong</strong><br><br>Line break",
+  "toastlib:wrap_toast": "<font color=\"lightgoldenrodyellow\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque auctor tortor, sed ornare magna egestas eget. Pellentesque nec velit.</font>",
+  "toastlib:placeholder_toast": "<font color=\"lightgoldenrodyellow\">This toast includes a placeholder to show this number: {0}</font>",
+
+  "toastlib:multi_toast1": "<font color=\"yellow\">This is an example of a toast using the font color yellow.</font>",
+  "toastlib:multi_toast2": "<font color=\"#00F2FF\">This is an example of a toast using the font color #00F2FF.</font>",
+  "toastlib:multi_toast3": "<font color=\"#00F2FF7F\">This is an example of a toast using the font color #00F2FF7F, this should have a lower opacity.</font>",
+  "toastlib:multi_toast4": "<font color=\"lightgreen\" weight=\"bold\">This is an example of a toast using the font color lightgreen and the font weight bold.</font>",
+  "toastlib:multi_toast5": "This is an example of a toast using the <strong>strong</strong> tag only on one word.",
+  "toastlib:multi_toast6": "This is an example of a toast using a line break<br>This is a new line after the line break.",
+  "toastlib:multi_toast7": "This is an example of a long toast that causes the words to wrap instead of using a new line with the br tag. To increase the length of this I am mindlessly typing words while watching a tv show. It seems to work well."
 }
