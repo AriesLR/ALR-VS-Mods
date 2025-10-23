@@ -83,7 +83,7 @@ ToastLib supports **formatted messages** using arguments and **language key plac
 You can pass arguments to `ShowToast()` just like `Lang.Get()` would handle them.  
 ToastLib automatically substitutes placeholders in translation strings or plain text.
 
-Example 1 — Using plain text formatting:
+**Example 1 - Using plain text formatting:**
 
 ```csharp
 if (toastLib != null)
@@ -93,9 +93,9 @@ if (toastLib != null)
 ```
 
 This will display:  
-“You have 3 new messages.”
+"You have 3 new messages."
 
-Example 2 — Using a language key with placeholders:
+**Example 2 - Using a language key with placeholders:**
 
 Suppose your mod has a language entry:
 
@@ -108,12 +108,14 @@ Then you can display it like this:
 ```csharp
 if (toastLib != null)
 {
-    toastLib.ShowToast(Lang.Get("mymodname:mytoast_welcome", "PlayerName"));
+    var playerName = "Jeff";
+
+    toastLib.ShowToast(Lang.Get("mymodname:mytoast_welcome"), playerName);
 }
 ```
 
 The toast will show:  
-“Welcome back, PlayerName!”
+"Welcome back, Jeff!"
 
 ToastLib handles these automatically through its internal formatting system, so you can safely mix direct strings and localization keys with arguments.
 
@@ -136,3 +138,51 @@ Example flow:
 This ensures that ToastLib is only ever used on the client, trying to use ToastLib on the server will not work.
 
 ---
+
+### Advanced Toasts
+
+ToastLib now includes a new method `ShowToastAdv()` that allows more customization of the toasts. Using this method instead of `ShowToast()` allows you to set the time (in ms) the toast displays for and the background color of the toast. It is highly recommended to use 8 digit hex codes for the background color as transparency is needed for the best looking toasts.
+
+Examples of `ShowToastAdv()` Usage:
+
+**Example 1 - Using ShowToastAdv with a lang key and placeholder**
+
+Suppose your mod has a language entry:
+
+```json
+"mymodname:mytoast_example": "This is just a regular language file entry."
+```
+
+Then you can display it like this:
+
+```csharp
+if (toastLib != null)
+{
+    toastLib.ShowToastAdv(Lang.Get("mymodname:mytoast_example"), 8000f, "#00F2FF7F");
+}
+```
+
+This will display with an opaque cyan/teal toast background and it will last for 8 seconds:  
+"This is just a regular language file entry."
+
+Example 2 - Using a language key with placeholders:
+
+Suppose your mod has a language entry:
+
+```json
+"toastlib:placeholder_toast": "<font color=\"lightgoldenrodyellow\">This toast includes a placeholder to show this number: {0}</font>",
+```
+
+Then you can display it like this:
+
+```csharp
+if (toastLib != null)
+{
+    var placeholderTxt = "69";
+
+    ShowToastAdv(Lang.Get("toastlib:placeholder_toast"), 8000f, "#00F2FF7F", placeholderTxt);
+}
+```
+
+This will display with an opaque cyan/teal toast background and it will last for 8 seconds, the text will be `lightgoldenrodyellow`:  
+"This toast includes a placeholder to show this number: 69"
