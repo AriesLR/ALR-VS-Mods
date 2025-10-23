@@ -180,7 +180,7 @@ if (toastLib != null)
 {
     var placeholderTxt = "69";
 
-    ShowToastAdv(Lang.Get("toastlib:placeholder_toast"), 8000f, "#00F2FF7F", placeholderTxt);
+    toastLib.ShowToastAdv(Lang.Get("toastlib:placeholder_toast"), 8000f, "#00F2FF7F", placeholderTxt);
 }
 ```
 
