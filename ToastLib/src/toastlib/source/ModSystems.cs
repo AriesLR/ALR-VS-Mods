@@ -1,172 +1,110 @@
 ﻿using ImGuiNET;
+using ProtoBuf;
 using System.Drawing;
 using System.Globalization;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.Server;
 using VSImGui;
 using VSImGui.API;
 
 namespace toastlib
 {
+    // ProtoBuf implementation for sending toasts via server-side methods
+    [ProtoContract]
+    public class ToastMessagePacket
+    {
+        [ProtoMember(1)] public string Message { get; set; } = "";
+        [ProtoMember(2)] public float DisplayTimeMs { get; set; } = 5000f;
+        [ProtoMember(3)] public string BackgroundColor { get; set; } = "#000000CC";
+    }
+
     public sealed class toastlibModSystem : ModSystem
     {
         private ICoreClientAPI? capi;
+        private ICoreServerAPI? sapi;
+        private IClientNetworkChannel? clientChannel;
+        private IServerNetworkChannel? serverChannel;
+        public ServerAPI? Server { get; private set; }
+
         private ImGuiModSystem? _modSystem;
         private readonly List<Toast> toastQueue = new();
 
+        // Toast Display Settings
         private const float ToastWidth = 400f;
         private const float ToastHeight = 10f;
         private const float SlideTimeMs = 500f;
         private const float DisplayTimeMs = 5000f;
         private const float Padding = 6f;
 
-        public void ShowToast(string langKey, params object[] args)
+        // Register Network Channels
+        public override void Start(ICoreAPI api)
         {
-            if (capi == null) return;
-            string text = FormatLang(langKey, args);
-            toastQueue.Add(new Toast(text));
+            // Client-Side Network Channel Init
+            if (api.Side == EnumAppSide.Client)
+            {
+                var capi = api as ICoreClientAPI;
+
+                clientChannel = capi!.Network.RegisterChannel("toastlib")
+                    .RegisterMessageType<ToastMessagePacket>();
+
+                clientChannel.SetMessageHandler<ToastMessagePacket>(OnToastMessageReceived);
+            }
+
+            // Server-Side Network Channel Init
+            if (api.Side == EnumAppSide.Server)
+            {
+                var sapi = api as ICoreServerAPI;
+                serverChannel = sapi!.Network.RegisterChannel("toastlib")
+                    .RegisterMessageType<ToastMessagePacket>();
+
+                Server = new ServerAPI(sapi, serverChannel);
+            }
         }
 
-        public void ShowToastAdv(string langKey, float? displayTimeMs = null, string? bgColor = null, params object[] args)
-        {
-            if (capi == null) return;
-            string text = FormatLang(langKey, args);
-
-            Vector4 color = bgColor != null ? ParseColor(bgColor) : new Vector4(0, 0, 0, 0.8f);
-            float display = displayTimeMs ?? DisplayTimeMs;
-
-            toastQueue.Add(new Toast(text, display, color));
-        }
-
+        // Start Client-Side
         public override void StartClientSide(ICoreClientAPI api)
         {
             capi = api;
             _modSystem = api.ModLoader.GetModSystem<ImGuiModSystem>();
             _modSystem.Draw += OnDrawToasts;
-            RegisterCommands(api);
+
+            // Register commands via Commands.cs
+            Commands.RegisterClient(api, this);
         }
 
-        private void RegisterCommands(ICoreClientAPI api)
+        // Start Server-Side
+        public override void StartServerSide(ICoreServerAPI api)
         {
-            var root = api.ChatCommands.Create("toastlib")
-                .WithDescription("Toastlib Commands")
-                .RequiresPrivilege(Privilege.chat);
+            sapi = api;
 
-            root.BeginSubCommand("example")
-                .WithDescription(Lang.Get("toastlib:example_cmd_desc"))
-                .HandleWith(OnExampleCmd);
-
-            root.BeginSubCommand("wrap")
-                .WithDescription(Lang.Get("toastlib:wrap_cmd_desc"))
-                .HandleWith(OnWrapCmd);
-
-            root.BeginSubCommand("placeholder")
-                .WithDescription(Lang.Get("toastlib:placeholder_cmd_desc"))
-                .HandleWith(OnPlaceholderCmd);
-
-            root.BeginSubCommand("placeholderadv")
-                .WithDescription(Lang.Get("toastlib:placeholderadv_cmd_desc"))
-                .HandleWith(OnPlaceholderAdvCmd);
-
-            root.BeginSubCommand("multi")
-                .WithDescription(Lang.Get("toastlib:multi_cmd_desc"))
-                .HandleWith(OnMultiCmd);
-
-            root.BeginSubCommand("multiadv")
-                .WithDescription(Lang.Get("toastlib:multiadv_cmd_desc"))
-                .HandleWith(OnMultiAdvCmd);
+            // Register commands via Commands.cs
+            Commands.RegisterServer(api, this);
         }
 
-        private TextCommandResult OnExampleCmd(TextCommandCallingArgs args)
+        // ============ Show Toast Methods ============
+
+        // Show regular Toast
+        public void ShowToast(string message)
         {
-            ShowToast(Lang.Get("toastlib:example_toast"));
-            return TextCommandResult.Success("");
+            if (capi == null) return;
+            toastQueue.Add(new Toast(message));
         }
 
-        private TextCommandResult OnWrapCmd(TextCommandCallingArgs args)
+        // Show Advanced Toast
+        public void ShowToastAdv(string message, float? displayTimeMs = null, string? bgColor = null)
         {
-            ShowToast(Lang.Get("toastlib:wrap_toast"));
-            return TextCommandResult.Success("");
+            if (capi == null) return;
+
+            Vector4 color = bgColor != null ? ParseColor(bgColor) : new Vector4(0, 0, 0, 0.8f);
+            float display = displayTimeMs ?? DisplayTimeMs;
+
+            toastQueue.Add(new Toast(message, display, color));
         }
 
-        private TextCommandResult OnPlaceholderCmd(TextCommandCallingArgs args)
-        {
-            var placeholderTxt = "69";
-
-            ShowToast(Lang.Get("toastlib:placeholder_toast"), placeholderTxt);
-            return TextCommandResult.Success("");
-        }
-
-        private TextCommandResult OnPlaceholderAdvCmd(TextCommandCallingArgs args)
-        {
-            var placeholderTxt = "69";
-
-            ShowToastAdv(Lang.Get("toastlib:placeholder_toast"), 8000f, "#00F2FF7F", placeholderTxt);
-            return TextCommandResult.Success("");
-        }
-
-        private TextCommandResult OnMultiCmd(TextCommandCallingArgs args)
-        {
-            if (capi == null) return TextCommandResult.Success("");
-
-            string[] keys = new[]
-            {
-                "toastlib:multi_toast1",
-                "toastlib:multi_toast2",
-                "toastlib:multi_toast3",
-                "toastlib:multi_toast4",
-                "toastlib:multi_toast5",
-                "toastlib:multi_toast6",
-                "toastlib:multi_toast7"
-            };
-
-            for (int i = 0; i < keys.Length; i++)
-            {
-                int delayMs = i * 500;
-                string key = keys[i];
-
-                capi.Event.RegisterCallback(_ =>
-                {
-                    ShowToast(Lang.Get(key));
-                }, delayMs);
-            }
-
-            return TextCommandResult.Success("");
-        }
-
-        private TextCommandResult OnMultiAdvCmd(TextCommandCallingArgs args)
-        {
-            if (capi == null) return TextCommandResult.Success("");
-
-            string[] keys = new[]
-            {
-                "toastlib:multi_toast1",
-                "toastlib:multi_toast2",
-                "toastlib:multi_toast3",
-                "toastlib:multi_toast4",
-                "toastlib:multi_toast5",
-                "toastlib:multi_toast6",
-                "toastlib:multi_toast7"
-            };
-
-            for (int i = 0; i < keys.Length; i++)
-            {
-                int delayMs = i * 500;
-                string key = keys[i];
-
-                capi.Event.RegisterCallback(_ =>
-                {
-                    ShowToastAdv(Lang.Get(key), 8000f, "#00F2FF7F");
-                }, delayMs);
-            }
-
-            return TextCommandResult.Success("");
-        }
-
+        // ============ Toast Drawing Logic ============
         private CallbackGUIStatus OnDrawToasts(float deltaSeconds)
         {
             if (toastQueue.Count == 0) return CallbackGUIStatus.Closed;
@@ -255,52 +193,6 @@ namespace toastlib
                 {
                     toastQueue.RemoveAt(i);
                 }
-            }
-        }
-
-        private IEnumerable<(string? Word, Vector4 Color, bool Bold, bool NewLine)> ParseVTML(string text)
-        {
-            string[] lines = Regex.Replace(text, @"<br\s*/?>", "\n", RegexOptions.IgnoreCase).Split('\n');
-            bool isFirstWord = true;
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                var line = lines[i];
-
-                var regex = new Regex(
-                    @"<font\s+color=""(#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?|[a-zA-Z]+)""(?:\s+weight=""bold"")?\s*>(.*?)</font>|<strong>(.*?)</strong>|([^\n<]+)",
-                    RegexOptions.IgnoreCase
-                );
-
-                foreach (Match match in regex.Matches(line))
-                {
-                    string content = match.Groups[2].Success ? match.Groups[2].Value :
-                                     match.Groups[3].Success ? match.Groups[3].Value :
-                                     match.Groups[4].Success ? match.Groups[4].Value : "";
-
-                    Vector4 color = match.Groups[1].Success ? ParseColor(match.Groups[1].Value) : Vector4.One;
-                    bool bold = match.Groups[3].Success || match.Value.Contains("weight=\"bold\"");
-
-                    string[] words = Regex.Split(content, @"(\s+)");
-                    foreach (var w in words)
-                    {
-                        if (!string.IsNullOrEmpty(w))
-                        {
-                            string word = w;
-
-                            if (isFirstWord && !string.IsNullOrWhiteSpace(word))
-                            {
-                                word = " " + word;
-                                isFirstWord = false;
-                            }
-
-                            yield return (word, color, bold, false);
-                        }
-                    }
-                }
-
-                if (i < lines.Length - 1)
-                    yield return (null, Vector4.One, false, true);
             }
         }
 
@@ -409,6 +301,56 @@ namespace toastlib
             return new Vector2(maxX, cursor.Y + font.FontSize * 0.5f + Padding);
         }
 
+        // ============ Parsers and Formatters ============
+
+        // VTML Parser
+        private IEnumerable<(string? Word, Vector4 Color, bool Bold, bool NewLine)> ParseVTML(string text)
+        {
+            string[] lines = Regex.Replace(text, @"<br\s*/?>", "\n", RegexOptions.IgnoreCase).Split('\n');
+            bool isFirstWord = true;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var line = lines[i];
+
+                var regex = new Regex(
+                    @"<font\s+color=""(#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?|[a-zA-Z]+)""(?:\s+weight=""bold"")?\s*>(.*?)</font>|<strong>(.*?)</strong>|([^\n<]+)",
+                    RegexOptions.IgnoreCase
+                );
+
+                foreach (Match match in regex.Matches(line))
+                {
+                    string content = match.Groups[2].Success ? match.Groups[2].Value :
+                                     match.Groups[3].Success ? match.Groups[3].Value :
+                                     match.Groups[4].Success ? match.Groups[4].Value : "";
+
+                    Vector4 color = match.Groups[1].Success ? ParseColor(match.Groups[1].Value) : Vector4.One;
+                    bool bold = match.Groups[3].Success || match.Value.Contains("weight=\"bold\"");
+
+                    string[] words = Regex.Split(content, @"(\s+)");
+                    foreach (var w in words)
+                    {
+                        if (!string.IsNullOrEmpty(w))
+                        {
+                            string word = w;
+
+                            if (isFirstWord && !string.IsNullOrWhiteSpace(word))
+                            {
+                                word = " " + word;
+                                isFirstWord = false;
+                            }
+
+                            yield return (word, color, bold, false);
+                        }
+                    }
+                }
+
+                if (i < lines.Length - 1)
+                    yield return (null, Vector4.One, false, true);
+            }
+        }
+
+        // Parse Color Codes
         private Vector4 ParseColor(string color)
         {
             if (string.IsNullOrWhiteSpace(color))
@@ -445,23 +387,85 @@ namespace toastlib
             }
         }
 
-        private string FormatLang(string key, object[] args)
+        // ============ ToastLib Server-Side Logic ============
+
+        // On Packet Recieved
+        private void OnToastMessageReceived(ToastMessagePacket msg)
         {
-            string text = Lang.GetIfExists(key) ?? key;
-            if (args != null && args.Length > 0 && capi != null)
-            {
-                try
-                {
-                    text = string.Format(CultureInfo.InvariantCulture, text, args);
-                }
-                catch
-                {
-                    capi.World.Logger.Warning("toastlib: invalid format for lang key {0}", key);
-                }
-            }
-            return text;
+            // When a toast packet arrives from the server, display it on the client
+            ShowToastAdv(msg.Message, msg.DisplayTimeMs, msg.BackgroundColor);
         }
 
+        // ToastLib's "ServerAPI" used for sending toasts via server-side methods
+        public class ServerAPI
+        {
+            private readonly IServerNetworkChannel? channel;
+            private readonly ICoreServerAPI? sapi;
+
+            internal ServerAPI(ICoreServerAPI? sapi, IServerNetworkChannel? ch)
+            {
+                this.sapi = sapi;
+                channel = ch;
+            }
+
+            // Show Toast to a single player
+            // USAGE: toastlib.Server.ShowToast(player, "Hello, World!");
+            public void ShowToast(IServerPlayer player, string message)
+            {
+                if (channel == null || player == null) return;
+                channel.SendPacket(new ToastMessagePacket
+                {
+                    Message = message
+                }, player);
+            }
+
+            // Show an Advanced Toast to a single player
+            // USAGE: toastlib.Server.ShowToastAdv(player, "Hello, World!", 7000f, "#FF0000CC");
+            public void ShowToastAdv(IServerPlayer player, string message, float displayTimeMs = 5000f, string bgColor = "#000000CC")
+            {
+                if (channel == null || player == null) return;
+                channel.SendPacket(new ToastMessagePacket
+                {
+                    Message = message,
+                    DisplayTimeMs = displayTimeMs,
+                    BackgroundColor = bgColor
+                }, player);
+            }
+
+            // Show a Toast to all online players
+            // USAGE: toastlib.Server.ShowToast("Hello, Everyone!");
+            public void ShowToast(string message)
+            {
+                if (channel == null || sapi == null) return;
+
+                foreach (var player in sapi.World.AllOnlinePlayers)
+                {
+                    channel.SendPacket(new ToastMessagePacket
+                    {
+                        Message = message
+                    }, (IServerPlayer)player);
+                }
+            }
+
+            // Show an Advanced Toast to all online players
+            // USAGE: toastlib.Server.ShowToastAdv("Hello, Everyone!", 7000f, "#FF0000CC");
+            public void ShowToastAdv(string message, float displayTimeMs = 5000f, string bgColor = "#000000CC")
+            {
+                if (channel == null || sapi == null) return;
+
+                foreach (var player in sapi.World.AllOnlinePlayers)
+                {
+                    channel.SendPacket(new ToastMessagePacket
+                    {
+                        Message = message,
+                        DisplayTimeMs = displayTimeMs,
+                        BackgroundColor = bgColor
+                    }, (IServerPlayer)player);
+                }
+            }
+        }
+
+        // Toast Construction Helper
         private class Toast
         {
             public string Text { get; }
@@ -487,6 +491,7 @@ namespace toastlib
             }
         }
 
+        // Math Helper
         private static class MathHelper
         {
             public static float Lerp(float a, float b, float t)
