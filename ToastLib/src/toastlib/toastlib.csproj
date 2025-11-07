@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ModName>ToastLib</ModName>
     <ModType>code</ModType>
-    <ModVersion>0.3.0</ModVersion>
+    <ModVersion>0.3.1</ModVersion>
     <ModId>toastlib</ModId>
     <Description>A library mod leveraging the ImGui mod by Maltiez to draw toast style popups.</Description>
     <Side>universal</Side>

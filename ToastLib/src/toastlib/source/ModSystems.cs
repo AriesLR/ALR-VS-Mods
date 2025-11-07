@@ -27,13 +27,14 @@ namespace toastlib
         private ICoreServerAPI? sapi;
         private IClientNetworkChannel? clientChannel;
         private IServerNetworkChannel? serverChannel;
-        public ServerAPI? Server { get; private set; }
+        public ServerAPI Server { get; private set; } = null!;
 
         private ImGuiModSystem? _modSystem;
         private readonly List<Toast> toastQueue = new();
 
         // Toast Display Settings
         private const float ToastWidth = 400f;
+
         private const float ToastHeight = 10f;
         private const float SlideTimeMs = 500f;
         private const float DisplayTimeMs = 5000f;
