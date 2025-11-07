@@ -335,10 +335,10 @@ namespace storylocationregen
                 if ((dx * dx + dz * dz) <= radiusBlocks * radiusBlocks && player is IServerPlayer sp)
                 {
                     var messages = new (string Key, object?[] Args)[]
-{
+                    {
                         ("storylocationregen:insidewarning3", Array.Empty<object>()),
                         ("storylocationregen:insidewarning4", Array.Empty<object>())
-};
+                    };
 
                     for (int i = 0; i < messages.Length; i++)
                     {
