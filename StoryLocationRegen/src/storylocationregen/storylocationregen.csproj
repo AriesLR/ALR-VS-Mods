@@ -5,7 +5,7 @@
     <ModType>code</ModType>
     <ModVersion>0.3.0</ModVersion>
     <ModId>storylocationregen</ModId>
-    <Description>Allows you to set a location to regenerate on a 7-14 in-game days timer. Supports multiple locations.</Description>
+    <Description>Allows you to set locations to regenerate on a 7-14 in-game day timer. Supports multiple locations.</Description>
     <Side>universal</Side>
     <RequiredOnClient>true</RequiredOnClient>
     <RequiredOnServer>true</RequiredOnServer>
