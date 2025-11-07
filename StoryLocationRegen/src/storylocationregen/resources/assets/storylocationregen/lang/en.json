@@ -15,11 +15,12 @@
 
   "storylocationregen:list_desc": "Shows the list of currently set regen locations.",
 
-  "storylocationregen:config_saved": "Mod data successfully saved.",
-  "storylocationregen:error_loading_config": "Error loading mod config: {0}",
-  "storylocationregen:error_saving_config": "Error saving mod config: {0}",
 
-  "storylocationregen:coords_saved": "{0} coordinates saved: X: {1}, Z: {2}. Next regen in {3} day(s).",
+
+  "storylocationregen:log_config_saved": "[Story Location Regen] Mod data successfully saved.",
+
+
+
   "storylocationregen:coords_not_saved": "{0} coordinates are not set yet.",
   "storylocationregen:player_not_found": "Player not found.",
 
@@ -34,13 +35,17 @@
   "storylocationregen:scheduled": " (Regen Scheduled)",
   "storylocationregen:location_deleted": "Location '{0}' deleted and pending regen cancelled.",
 
-  "storylocationregen:regen_started": "The {0} is distorted by space and time...",
-  "storylocationregen:regen_success": "The {0} reappears anew...",
 
-  "storylocationregen:insidewarning1": "The ground trembles below the {0}...",
-  "storylocationregen:insidewarning2": "Your head begins to ache...",
-  "storylocationregen:insidewarning3": "The rust is leaking in...",
-  "storylocationregen:insidewarning4": "You feel like you should leave, QUICKLY!",
 
-  "storylocationregen:warning_teleport": "A higher power saves you from destruction."
+  "storylocationregen:coords_saved": "<font color=\"magenta\">{0}</font> <font color=\"palegoldenrod\">coordinates saved:</font> <font color=\"goldenrod\">X:</font> <font color=\"yellow\">{1}</font><font color=\"palegoldenrod\">,</font> <font color=\"goldenrod\">Z:</font> <font color=\"yellow\">{2}</font><font color=\"palegoldenrod\">. Next regen in</font> {3} <font color=\"palegoldenrod\">day(s).</font>",
+
+  "storylocationregen:regen_started": "<font color=\"palegoldenrod\">The</font> <font color=\"magenta\">{0}</font> <font color=\"palegoldenrod\">is distorted by space and time...</font>",
+  "storylocationregen:regen_success": "<font color=\"palegoldenrod\">The</font> <font color=\"magenta\">{0}</font> <font color=\"palegoldenrod\">reappears anew...</font>",
+
+  "storylocationregen:insidewarning1": "<font color=\"palegoldenrod\">The ground trembles below the</font> <font color=\"magenta\">{0}</font><font color=\"palegoldenrod\">...</font>",
+  "storylocationregen:insidewarning2": "<font color=\"palegoldenrod\">Your head begins to ache...</font>",
+  "storylocationregen:insidewarning3": "<font color=\"palegoldenrod\">The rust is leaking in...</font>",
+  "storylocationregen:insidewarning4": "<font color=\"palegoldenrod\">You feel like you should leave,</font> <font color=\"lightcoral\">QUICKLY!</font>",
+
+  "storylocationregen:warning_teleport": "<font color=\"lightgreen\">A higher power saves you from destruction.</font>"
 }

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- Mod info -->
   <PropertyGroup>
-    <ModName>storylocationregen</ModName>
+    <ModName>Story Location Regen</ModName>
     <ModType>code</ModType>
-    <ModVersion>0.2.0</ModVersion>
+    <ModVersion>0.3.0</ModVersion>
     <ModId>storylocationregen</ModId>
     <Description>Allows you to set a location to regenerate on a 7-14 in-game days timer. Supports multiple locations.</Description>
     <Side>universal</Side>
@@ -19,6 +19,8 @@
   <!-- Dependencies -->
   <ItemGroup>
     <Dependencies Include="game" Version="*" />
+	<Dependencies Include="vsimgui" Version="*" />
+	<Dependencies Include="toastlib" Version="*" />
   </ItemGroup>
 
   <!-- Project settings -->
