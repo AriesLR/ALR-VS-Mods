@@ -67,7 +67,7 @@ using toastlib;
 In your `StartClientSide` method, retrieve the ToastLib mod system from the mod loader:
 
 ```csharp
-private ICoreClientAPI? capi;
+private ICoreClientAPI capi = null!;
 private toastlibModSystem toastLib = null!;
 
 public override void StartClientSide(ICoreClientAPI capi)
@@ -213,7 +213,7 @@ using toastlib;
 In your `StartServerSide` method, retrieve the ToastLib mod system from the mod loader:
 
 ```csharp
-private ICoreServerAPI? sapi;
+private ICoreServerAPI sapi = null!;
 private toastlibModSystem toastLib = null!;
 
 public override void StartServerSide(ICoreServerAPI sapi)
