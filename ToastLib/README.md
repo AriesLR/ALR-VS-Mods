@@ -133,7 +133,7 @@ toastLib.ShowToast(message);
 **Display Result:**
 
 The toast will show:  
-"My name, Jeff!"
+"This toast includes a placeholder to show this number: 69"
 
 This will display in the lightgoldenrodyellow text color.
 
